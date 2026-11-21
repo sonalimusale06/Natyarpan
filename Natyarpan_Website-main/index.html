@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATYARPAN | Theater Media</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    
+</head>
+<body>
+
+<!-- ================================================
+     HEADER
+================================================ -->
+<header>
+    <div class="header-left">
+        <img src="rit-logo.png" alt="RIT Logo" class="brand-logo">
+        <h1 class="brand-name">NATY<span style="color: var(--accent-blue);">ARPAN</span></h1>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="#home">Home</a>
+        <a href="#productions">Past Show</a>
+        <a href="#history">History</a>
+        <a href="#team">Team</a>
+      
+    </nav>
+
+    <button class="hamburger" id="hamburger-btn" aria-label="Open Menu">
+        <span></span><span></span><span></span>
+    </button>
+
+    <div class="header-right">
+        <button id="open-scratch" class="ticket-btn">
+            <i class="fas fa-ticket-alt"></i> Get Tickets
+        </button>
+        <img src="Cultural-logo.png" alt="Cultural Logo" class="header-end-logo">
+    </div>
+</header>
+
+<!-- Mobile Nav Overlay -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+
+<!-- Scratch Ticket Modal -->
+<div id="scratch-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Claim Your Ticket!</h2>
+        <p>Scratch the silver box to reveal your show ticket.</p>
+        <div class="scratch-container">
+            <img src="ticket26.jpeg" id="ticket-img" alt="Ticket">
+            <canvas id="scratch-canvas"></canvas>
+        </div>
+        <button id="download-btn">Download Ticket <i class="fas fa-download"></i></button>
+    </div>
+</div>
+
+
+<!-- ================================================
+     HOME / HERO SECTION
+================================================ -->
+<section id="home">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="All Video For Home Page.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+        <h1>NATYARPAN</h1>
+        <div class="explore-container">
+            <span class="explore-text">Explore More</span>
+            <a href="#productions" class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================
+     UPCOMING SHOWS SECTION
+================================================ -->
+<section id="productions">
+    <div class="productions-header">
+        <h2 class="section-title">Past Shows</h2>
+    </div>
+    <div class="show-grid">
+        <article class="show-card">
+            <h3>HALFWAY</h3>
+            <p>मानवी विचारसरणीत होणाऱ्या नाजूक बदलांचा आणि नात्यांच्या प्रवासाचा वेध घेत, माणसांच्या नाटकांकडे पाहण्याच्या बदलत्या दृष्टिकोनाचा वेध घेणारी एक प्रभावी मराठी एकांकिका.</p>
+            <div class="show-info">
+                <div class="info-item"><i class="fas fa-calendar-alt"></i><span>२६ एप्रिल २०२६</span></div>
+                <div class="info-item"><i class="fas fa-clock"></i><span>दु. १:३० वाजता</span></div>
+                <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>लोकनेते राजारामबापू पाटील नाट्यगृह, ईश्वरपूर</span></div>
+            </div>
+            <span class="status-tag"></span>
+            <a href="final_upcoming_halfway (1).html" class="details-btn">More Details →</a>
+
+        </article>
+
+        <article class="show-card">
+            <h3>उकळी</h3>
+            <p>मनात साचलेल्या भावनांच्या उकळीपर्यंत नेणारा प्रवास, नात्यांतील ताणतणाव आणि अंतर्मनातील संघर्ष आधुनिक रंगभूमीच्या प्रभावी मांडणीत सादर करणारी एक ताकदीची कलाकृती.</p>
+            <div class="show-info">
+                <div class="info-item"><i class="fas fa-calendar-alt"></i><span>२६ एप्रिल २०२६</span></div>
+                <div class="info-item"><i class="fas fa-clock"></i><span>दु. ३:०० वाजता</span></div>
+                <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>लोकनेते राजारामबापू पाटील नाट्यगृह, ईश्वरपूर</span></div>
+            </div>
+            <span class="status-tag"></span>
+            <a href="final_upcoming_ukali (1).html" class="details-btn">More Details →</a>
+
+
+        </article>
+    </div>
+</section>
+<section class="stats-ribbon">
+    <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Plays</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <span class="stat-number">17+</span>
+        <span class="stat-label">Artists</span>
+    </div>
+</section>
+
+<!-- ================================================
+     HISTORY SECTION
+================================================ -->
+
+<main class="archive-container" id="history">
+<h2 class="legacy-title">Unfold Legacy</h2>
+    <div class="card-grid">
+        <div class="play-card" onmouseenter="showPopup(this, 'Halfway', '2025', 'halfway photo.jpeg', 'तुटलेली नाती आणि मनातल्या एकलेपणाची गोष्ट सांगणारे नाटक.')" onmouseleave="hidePopup()">
+            <a href="Halfway_fixed.html" class="card-link">
+                <div class="play-media"><img src="halfway photo.jpeg"></div>
+                <div class="play-info">
+                    <span class="year-badge">2025</span>
+                    <h2>Halfway</h2>
+                    <p>तुटलेली नाती आणि मनातल्या एकलेपणाची गोष्ट सांगणारे नाटक.</p>
+                </div>
+            </a>
+        </div>
+
+    
+        <div class="play-card" onmouseenter="showPopup(this, 'WHY NOT?', '2024', 'why not photo.jpg', 'लग्नापूर्वी आरोग्य तपासणी करण्याच्या धाडसी विचाराची गोष्ट.')" onmouseleave="hidePopup()">
+            <a href="WHY_NOT_fixed.html" class="card-link">
+                <div class="play-media"><img src="why not photo.jpg"></div>
+                <div class="play-info">
+                   <span class="year-badge">2024</span>
+                <h2>WHY NOT?</h2>
+                <p>लग्नापूर्वी आरोग्य तपासणी करण्याच्या धाडसी विचाराची गोष्ट.</p>
+                </div>
+            </a>
+        </div>
+
+
+
+        <div class="play-card" onmouseenter="showPopup(this, 'विषण', '2023', 'vishan photo.jpg', 'हॉस्पिटलमध्ये मृतदेह शिवणाऱ्या एका बापाची आणि त्याच्या मुलीची इमोशनल गोष्ट.')" onmouseleave="hidePopup()">
+            <a href="Vishan_fixed.html" class="card-link">
+                <div class="play-media"><img src="vishan photo.jpg"></div>
+                <div class="play-info">
+                    <span class="year-badge">2023</span>
+                    <h2>विषण</h2>
+                    <p>हॉस्पिटलमध्ये मृतदेह शिवणाऱ्या एका बापाची आणि त्याच्या मुलीची इमोशनल गोष्ट.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="play-card" onmouseenter="showPopup(this, 'तुम्ही OR NOT TO ME', '2022', 'TNTM photo.jpeg', 'स्वातंत्र्य आणि व्यवस्थेवर प्रश्न उपस्थित करणाऱ्या एका माणसाची गोष्ट.')" onmouseleave="hidePopup()">
+            <a href="TNTM_fixed.html" class="card-link">
+                <div class="play-media"><img src="TNTM photo.jpeg"></div>
+                <div class="play-info">
+                    <span class="year-badge">2022</span>
+                    <h2>तुम्ही OR NOT TO ME</h2>
+                    <p>स्वातंत्र्य आणि व्यवस्थेवर प्रश्न उपस्थित करणाऱ्या एका माणसाची गोष्ट.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="play-card" onmouseenter="showPopup(this, 'एका मिठीची गोष्ट', '2021', 'hall photo.jpeg', 'साध्या संवादातून आयुष्यातील मोठ्या सत्यांचा शोध घेणारे नाटक.')" onmouseleave="hidePopup()">
+            <a href="Eka_mittichi_gosht_fixed.html" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info">
+                    <span class="year-badge">2021</span>
+                    <h2>एका मिठीची गोष्ट</h2>
+                    <p>प्रेमाच्या एका 'मिठीने' तणाव कसा सुटतो, याची ही गोष्ट आहे.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="play-card" onmouseenter="showPopup(this, 'Expiry Date', '2019', 'expiry date photo.jpeg', 'म्हातारपण आणि कुटुंबातील दुराव्यावर भाष्य करणारे नाटक.')" onmouseleave="hidePopup()">
+            <a href="Expiry_date_fixed.html" class="card-link">
+                <div class="play-media"><img src="expiry date photo.jpeg"></div>
+                <div class="play-info">
+                    <span class="year-badge">2019</span>
+                    <h2>Expiry Date</h2>
+                    <p>म्हातारपण आणि कुटुंबातील दुराव्यावर भाष्य करणारे नाटक.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="play-card" onmouseenter="showPopup(this, 'कस्तुरा', '2018', 'kastura photo.jpeg', 'सती प्रथा बंद झाल्यावर एका वीरपत्नीने दिलेला लढा.')" onmouseleave="hidePopup()">
+            <a href="Kastura_fixed.html" class="card-link">
+                <div class="play-media"><img src="kastura photo.jpeg"></div>
+                <div class="play-info">
+                    <span class="year-badge">2018</span>
+                    <h2>कस्तुरा</h2>
+                    <p>सती प्रथा बंद झाल्यावर एका वीरपत्नीने दिलेला लढा.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="play-card" onmouseenter="showPopup(this, 'Do Bhajniye', '2017', 'hall photo.jpeg', 'भारत-पाकिस्तान फाळणीमुळे दूर गेलेल्या दोन मित्रांची गोष्ट.')" onmouseleave="hidePopup()">
+            <a href="do_bhajaneyee.html" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info">
+                    <span class="year-badge">2017</span>
+                    <h2>Do Bhajniye</h2>
+                    <p>भारत-पाकिस्तान फाळणीमुळे दूर गेलेल्या दोन मित्रांची गोष्ट.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>इथे चोरी झालीच नाही</h2><p>घरातील मौल्यवान वस्तू हरवल्यानंतर गुंफलेले रहस्य.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>मादी</h2><p>स्त्रीच्या अस्तित्वाचा लढा सांगणारे नाटक.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>घर दोघांचं</h2><p>संसारातील संघर्षातून आणि प्रेमातून घर कसं बनतं.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>ग म भ न</h2><p>बालपण आणि संस्कारांच्या प्रवासावर प्रकाश टाकणारे नाटक.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>एक स्टेपनी दोन चाके</h2><p>मानवी नात्यांमधील गुंतागुंत मांडणारी कथा.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>काळोख</h2><p>मानवी मनातील भीती आणि अंधाऱ्या बाजूंचा शोध.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>एक दिवस अचानक</h2><p>आयुष्यात अनपेक्षितपणे घडणाऱ्या घटनांचे चित्रण.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>बॅक टू स्कूल</h2><p>शालेय जीवनातील निखळ मैत्रीच्या आठवणी.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>कवडसे</h2><p>जीवनातील छोट्या सुखांच्या किरणांचा शोध.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>हिस्टरी ऑफ लेजंड्स</h2><p>महान व्यक्तींच्या प्रेरणादायी पैलूंचे दर्शन.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>फ्रेंडशिप</h2><p>मैत्रीची व्याख्या आणि बदलणारे मैत्रीचे बंध.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>गप्पा</h2><p>मानवी स्वभाव आणि समाजातील विसंगतीवर भाष्य.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>सर ससून डेव्हिड</h2><p>एका ऐतिहासिक व्यक्तिमत्त्वाचा प्रवास.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>द जजमेंट डे</h2><p>न्याय आणि नैतिकतेची द्विधा अवस्था.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>श्री तशी सौ</h2><p>जोडप्याच्या कुरबुरींतून उलगडणारी विनोदी गोष्ट.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>आगशी</h2><p>कोकणी पार्श्वभूमीवरील माणसांची संस्कृती.</p></div>
+            </a>
+        </div>
+
+        <div class="play-card">
+            <a href="#" class="card-link">
+                <div class="play-media"><img src="hall photo.jpeg"></div>
+                <div class="play-info"><h2>लव्ह व्हाया अरेंज मॅरेज</h2><p>अरेंज मॅरेज मधील अनोळखीपणा ते प्रेमापर्यंतचा प्रवास.</p></div>
+            </a>
+        </div>
+    </div>
+</main>
+
+<div id="hoverPopup">
+    <div class="pop-media-wrap"><img src="" id="pop-img"></div>
+    <div class="pop-body">
+        <div class="pop-title" id="pop-title"></div>
+        <div class="pop-meta"><span id="pop-year"></span></div>
+        <p class="pop-desc" id="pop-desc"></p>
+    </div>
+</div>
+
+<!-- ================================================
+     TEAM SECTION
+================================================ -->
+<section id="team">
+    <h1 class="team-title">Sutradhar's of Story</h1>
+
+     <div class="card-stack" id="cardStack">
+        
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="sona_final.jpeg" alt="Arpita Shekhar">
+                    <div class="card-name-front"><h2>Sonali Musale</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Sonali Musale</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Lead Actress - Isha, Social Media</span></div>
+                        <div class="entry"><span class="p-name">Why Not?</span><span class="p-role">Actress - Mulachi aai(Patalin bai),Set Designer, Social Media</span></div>
+                        <div class="entry"><span class="p-name">Vishan</span><span class="p-role">Actress - Doctor</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="sakshi final.jpeg" alt="Sakshi Karanale">
+                    <div class="card-name-front"><h2>Sakshi Karanale</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Sakshi Karanale</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Actress - Constable, Costume, Set Department</span></div>
+                        <div class="entry"><span class="p-name">Why Not?</span><span class="p-role">Music, Costume</span></div>
+                        <div class="entry"><span class="p-name">Vishan</span><span class="p-role">Set Department</span></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="arpita.jpeg" alt="Arpita Shekhar">
+                    <div class="card-name-front"><h2>Arpita Shekhar</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Arpita Shekhar</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Actress - Kavita Jadhav</span></div>
+                        <div class="entry"><span class="p-name">Why Not?</span><span class="p-role">Actress - Mulichi Aai (Sushma), Set Designer</span></div>
+                        <div class="entry"><span class="p-name">Vishan</span><span class="p-role">Actress - Aai (Sunita Patil)</span></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="shruta.jpeg" alt="Shruti Salunkhe">
+                    <div class="card-name-front"><h2>Shruti Salunkhe</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Shruti Salunkhe</h2>
+                        
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Writer, Director, Actress - Police</span></div>
+                        <div class="entry"><span class="p-name">Why Not?</span><span class="p-role">Actress - Kaki</span></div>
+                        <div class="entry"><span class="p-name">Vishan</span><span class="p-role">Set Department</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="anant_final.jpeg" alt="Anant Handifod">
+                    <div class="card-name-front"><h2>Anant Handifod</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Anant Handifod</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Director, Light</span></div>
+                       <div class="entry"><span class="p-name">Why Not?</span><span class="p-role">Actor - Muliche baba(Sanjay), Management, Social Media</span></div>
+                        <div class="entry"><span class="p-name">Vishan</span><span class="p-role">Music, Social Media</span></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="vaishani_kumbhar_final.jpeg" alt="Vaishanvi Kumbhar">
+                    <div class="card-name-front"><h2>Vaishanvi Kumbhar</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Vaishanvi Kumbhar</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Actress - Aasha tai, Costume</span></div>
+                        <div class="entry"><span class="p-name">Why Not?</span><span class="p-role">Light, Costume</span></div>
+                        <div class="entry"><span class="p-name">Vishan</span><span class="p-role">Actor - Choti guddi, Costume</span></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="vishwajeet_final.jpeg" alt="Vishwajeet Koli">
+                    <div class="card-name-front"><h2>Vishwajeet Koli</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Vishwajeet Koli</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Director, Lead Actor - Santosh Jadhav, Social Media</span></div>
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Lead Actor - Vivek Yadav, Social Media</span></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="jahnavi_final.jpeg" alt="Jahnavi Mandavakar">
+                    <div class="card-name-front"><h2>Jahnavi Mandavakar</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Jahnavi Mandavakar</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Director, Actress - Sonal Jadhav(Mulagi)</span></div>
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Set Department</span></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="rutudya_final.jpeg" alt="Vishal Munde">
+                    <div class="card-name-front"><h2>Rutudhwaj Namayate</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Rutudhwaj Namayate</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Light, Social media, Management</span></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="vishal_final.jpeg" alt="Vishal Munde">
+                    <div class="card-name-front"><h2>Vishal Munde</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Vishal Munde</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Actor - Driver, Sheth, Music, Social Media</span></div>
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Light, Set Department</span></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="Dhanashree.jpeg" alt="Dhanashree">
+                    <div class="card-name-front"><h2>Dhanashree Patakure</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Dhanashree Patakure</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Actor - Namarata Jadhav(Aai), Costume</span></div>
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Set Department</span></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="mittu.jpeg" alt="Mittali Huwale">
+                    <div class="card-name-front"><h2>Mitali Huwale</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Mitali Huwale</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Actor - Usha Jadhav(Aaji), Costume, light</span></div>
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Set Department</span></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="atharav.jpeg" alt="Atharav Kamble">
+                    <div class="card-name-front"><h2>Atharv Kamble</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Atharv Kamble</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Actor - Pintya , Set Department</span></div>
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Set Department</span></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="parineeta.jpeg" alt="Parineeta Patil">
+                    <div class="card-name-front"><h2>Parineeta Patil</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Parineeta Patil</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Actress - Bhabi , Set Department</span></div>
+                        <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Music</span></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="Vaishnavi_mali_final.jpeg" alt="Vaishanvi Mali">
+                    <div class="card-name-front"><h2>Vaishanvi Mali</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Vaishanvi Mali</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Actress - Prajakta Salunkhe(Pinky), Music </span></div>
+                         <div class="entry"><span class="p-name">Halfway</span><span class="p-role">Set Department</span></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="shravani.jpeg" alt="Shravani Patil">
+                    <div class="card-name-front"><h2>Shravani Patil</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Shravani Patil</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Ukali</span><span class="p-role">Actress - Madam, Set Department</span></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+         <div class="team-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="omkar.jpeg" alt="Omkar Yewale">
+                    <div class="card-name-front"><h2>Omkar Yewale</h2></div>
+                </div>
+                <div class="card-back">
+                    <div class="member-header">
+                        <h2 class="name-back">Omkar Yewale</h2>
+                    </div>
+                    <div class="credit-timeline">
+                        <div class="entry"><span class="p-name">Why Not?</span><span class="p-role">Set Designer</span></div>
+                        <div class="entry"><span class="p-name">Vishan</span><span class="p-role">actor - Shankar, Set Designer</span></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer class="natyarpn-footer">
+    <div class="footer-top-grid">
+        <div class="footer-brand">
+            <h2>NATY<span>ARPAN</span></h2>
+            <p>Natyarpan creates a stage where every story finds its voice and lives beyond the curtain.</p>
+        </div>
+
+        <div class="footer-nav">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="#history">History</a></li>
+                <li><a href="#team">Meet Our Team</a></li>
+                <li><a href="#productions">Past Shows</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Connect With Us</h3>
+            <div class="contact-info">
+                <p><i class="fas fa-location-dot"></i> RIT College, Ishwarpur</p>
+                <p><i class="fas fa-envelope"></i> culturalcell@ritindia.edu</p>
+                <p><i class="fas fa-phone"></i> +91 7719062202</p>
+            </div>
+            <div class="social-row">
+                <a href="https://chat.whatsapp.com/D19mvDywoiZ8NLWrmT5FVv?mode=gi_t" class="social-icon wa" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/rit_drama_club?igsh=MWZ6NHRrYTAwd3c0Nw==" class="social-icon insta" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="copyright-text">&copy; 2026 Natyarpn Theater Media. All Rights Reserved.</div>
+        <div class="policy-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Refund Policy</a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ================================================
+     JAVASCRIPT
+================================================ -->
+<script src="script.js"></script>
+</body>
+</html>

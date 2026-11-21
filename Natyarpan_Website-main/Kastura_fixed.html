@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हाफWAY | Natyarpn Production</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mobile.css">
+
+    
+    <style>
+:root { --theater-blue: #001A3D; --accent-blue: #63B3ED; --white: #ffffff; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
+        
+        /* Curtain Animation */
+        .curtain-layer {
+            position: fixed; top: 0; width: 50%; height: 100%;
+            background: var(--theater-blue); z-index: 9999;
+            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .curtain-left { left: 0; border-right: 2px solid var(--accent-blue); }
+        .curtain-right { right: 0; border-left: 2px solid var(--accent-blue); }
+        .loaded .curtain-left { transform: translateX(-100%); }
+        .loaded .curtain-right { transform: translateX(100%); }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 26, 61, 0.05);
+        }
+         /* Add this Font Awesome link to your <head> if you don't have it */
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+ /*header */
+ /* ================================================
+           HEADER
+        ================================================ */
+        header {
+            background: var(--theater-blue);
+            height: 80px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2000;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 0 4%;
+            box-sizing: border-box;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .brand-logo { height: 50px; width: auto; }
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            margin: 0;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .nav-bar { display: flex; gap: 30px; }
+        .nav-bar a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+        }
+        .nav-bar a:hover { color: var(--accent-blue); }
+
+        .header-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-end-logo {
+            height: 75px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .ticket-btn {
+            background: var(--accent-blue);
+            color: var(--theater-blue);
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .ticket-btn:hover { background: var(--white); transform: translateY(-2px); }
+
+        /* ================================================
+           SCRATCH TICKET MODAL
+        ================================================ */
+        #scratch-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--modal-bg);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 650px;
+        }
+
+        .scratch-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 2px dashed #ccc;
+            user-select: none;
+        }
+
+        #ticket-img { width: 100%; height: 100%; display: block; object-fit: contain; }
+
+        #scratch-canvas { position: absolute; top: 0; left: 0; cursor: crosshair; }
+
+        .close-modal {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        #download-btn {
+            display: none;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .modal-content h2 { color: var(--theater-blue); margin-bottom: 5px; }
+        .modal-content p { color: #666; font-size: 0.9rem; }
+
+        /* scroll section for audince responce*/
+
+        /* Custom Scrollbar for Feedback List */
+#feedback-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+#feedback-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#feedback-list::-webkit-scrollbar-thumb {
+    background: var(--accent-blue);
+    border-radius: 10px;
+}
+
+#feedback-list::-webkit-scrollbar-thumb:hover {
+    background: var(--theater-blue);
+}
+
+/* Smooth fade-in animation for new comments */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* video section*/
+#media-slider {
+    display: flex;
+    will-change: transform;
+}
+
+.slide-dot.active {
+    background-color: white !important;
+    width: 20px; /* Makes the active dot look like a pill */
+    transition: all 0.3s ease;
+}
+
+/* end of video section*/
+
+/* natakache photos ani behinde scence */
+
+    /* This forces the slider to a consistent height */
+/* Container to keep everything the same size */
+/* 1. Force the viewport to a rigid size */
+.slider-viewport {
+    position: relative;
+    width: 100%;
+    height: 400px !important; /* Forces all blocks to be the same height */
+    overflow: hidden !important;
+    border-radius: 12px;
+    background-color: #0f172a; /* Dark background for missing images */
+}
+
+/* 2. The track must be a single row that doesn't wrap */
+.slider-track {
+    display: flex !important;
+    flex-direction: row !important;
+    height: 100% !important;
+    width: 100%;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* 3. Each slide must take up exactly 100% of the viewport */
+.slide-box {
+    min-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    flex-shrink: 0 !important;
+}
+
+/* 4. The absolute fix for the images */
+.slide-box img {
+    width: 100% !important;
+    height: 100% !important;
+    /* This is what keeps actors from looking stretched */
+    object-fit: cover !important; 
+    object-position: center !important;
+    display: block !important;
+}
+
+/* Navigation buttons */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.nav-btn.prev { left: 10px; }
+.nav-btn.next { right: 10px; }
+
+/* Navigation Button Styling */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.nav-btn.prev { left: 1rem; }
+.nav-btn.next { right: 1rem; }
+
+/* end of natakache photos */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* end of scroll section*/
+
+        @media (max-width: 1100px) {
+            .nav-bar { gap: 15px; }
+            .brand-name { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 500px) {
+            .scratch-container { width: 300px; height: 180px; }
+        }
+
+        /* ===== HAMBURGER BUTTON ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 2100;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        /* ===== MOBILE STYLES ===== */
+        @media (max-width: 768px) {
+            header { grid-template-columns: 1fr auto; height: 65px; }
+            .hamburger { display: flex; }
+            .nav-bar {
+                display: none !important;
+                flex-direction: column;
+                position: fixed;
+                top: 65px; left: 0;
+                width: 100%;
+                background: var(--theater-blue);
+                padding: 20px 0;
+                z-index: 1999;
+                text-align: center;
+                gap: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            }
+            .nav-bar.open { display: flex !important; }
+            .nav-bar a { padding: 14px 20px; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); width: 100%; }
+            .header-right { display: none; }
+            .brand-name { font-size: 1rem; }
+            .brand-logo { height: 38px; }
+            .header-end-logo { display: none; }
+            .slider-viewport { height: 250px !important; }
+        }
+
+    /* footer*/
+    /* ================================================
+           FOOTER
+        ================================================ */
+        .natyarpn-footer {
+            background-color: #001A3D;
+            color: var(--white);
+            padding: 30px 8% 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-top-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1.2fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+        .footer-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: #ffffff !important;
+}
+
+.footer-brand h2 span {
+    color: #63B3ED !important;
+}
+
+        .footer-brand h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 15px; }
+        .footer-brand h2 span { color: #63B3ED; }
+        .footer-brand p { color: #A0AEC0; font-size: 0.9rem; line-height: 1.8; max-width: 350px; }
+
+        .footer-nav { display: flex; flex-direction: column; align-items: flex-start; }
+        .footer-nav h3 {
+            font-size: 1.1rem; margin-bottom: 25px; color: #63B3ED;
+            text-transform: uppercase; letter-spacing: 2px; position: relative;
+        }
+        .footer-nav h3::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 30px; height: 2px; background: #63B3ED; }
+        .footer-nav ul { list-style: none; padding: 0; margin: 0; }
+        .footer-nav ul li { margin-bottom: 15px; display: flex; align-items: center; }
+        .footer-nav ul li a {
+            color: #CBD5E0; text-decoration: none; transition: 0.3s;
+            font-size: 0.95rem; display: flex; align-items: center;
+        }
+        .footer-nav ul li a::before { content: '•'; margin-right: 10px; color: #63B3ED; font-size: 1.2rem; }
+        .footer-nav ul li a:hover { color: var(--white); transform: translateX(8px); }
+
+        .footer-contact h3 { font-size: 1.1rem; margin-bottom: 25px; color: #63B3ED; text-transform: uppercase; letter-spacing: 2px; }
+        .contact-info p { font-size: 0.9rem; color: #CBD5E0; margin-bottom: 15px; display: flex; align-items: center; }
+        .contact-info i { width: 20px; margin-right: 15px; color: #63B3ED; }
+
+        .social-row { display: flex; gap: 15px; margin-top: 25px; }
+        .social-icon {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: center;
+            color: white; text-decoration: none; font-size: 1.5rem;
+            transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .insta:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); border-color: transparent; transform: translateY(-5px) rotate(8deg); }
+        .wa:hover { background: #25D366; border-color: transparent; transform: translateY(-5px) rotate(-8deg); }
+
+        .footer-bottom { padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .copyright-text { font-size: 0.85rem; color: #718096; }
+        .policy-links a { color: #718096; text-decoration: none; font-size: 0.85rem; margin-left: 20px; transition: 0.3s; }
+        .policy-links a:hover { color: var(--white); }
+
+        /* ================================================
+           RESPONSIVE
+        ================================================ */
+        @media (max-width: 1100px) {
+            .nav-bar { gap: 15px; }
+            .brand-name { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar { display: none; }
+            .team-card.prev { transform: translateX(-180px) scale(0.7); }
+            .team-card.next { transform: translateX(180px) scale(0.7); }
+            :root { --card-width: 280px; --card-height: 420px; }
+            .footer-top-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .footer-nav { align-items: center; }
+            .footer-nav h3::after { left: 50%; transform: translateX(-50%); }
+            .social-row { justify-content: center; }
+            .footer-bottom { justify-content: center; flex-direction: column; text-align: center; }
+            .scratch-container { width: 300px; height: 180px; }
+            .header-end-logo { height: 35px; }
+        }
+
+        @media (max-width: 600px) {
+            #hoverPopup { display: none !important; }
+        }
+    /* Official Brand Colors on Hover */
+    
+
+        /* Modal Transitions */
+        .modal { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
+    </style>
+</head>
+<body class="opacity-0 transition-opacity duration-500">
+
+    <div id="curtain-l" class="curtain-layer curtain-left"><h2 class="text-white text-4xl font-serif">NATY</h2></div>
+    <div id="curtain-r" class="curtain-layer curtain-right"><h2 class="text-white text-4xl font-serif">ARPAN</h2></div>
+
+
+<!-- ================================================
+     HEADER
+================================================ -->
+<header>
+    <div class="header-left">
+        <img src="rit-logo.png" alt="RIT Logo" class="brand-logo">
+        <h1 class="brand-name">NATY<span style="color: var(--accent-blue);">ARPAN</span></h1>
+    </div>
+
+    <nav class="nav-bar" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#productions">Past Show</a>
+        <a href="index.html#history">History</a>
+        <a href="index.html#team">Team</a>
+    </nav>
+
+    <div class="header-right">
+        <button id="open-scratch" class="ticket-btn">
+            <i class="fas fa-ticket-alt"></i> Get Tickets
+        </button>
+        <img src="Cultural-logo.png" alt="Cultural Logo" class="header-end-logo">
+    </div>
+
+    <!-- Hamburger (mobile only) -->
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+</header>
+
+<div id="scratch-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Claim Your Ticket!</h2>
+        <p>Scratch the silver box to reveal your show ticket.</p>
+        
+        <div class="scratch-container">
+            <img src="tikect_page-0001.jpg" id="ticket-img" alt="Ticket">
+            <canvas id="scratch-canvas"></canvas>
+        </div>
+
+        <button id="download-btn">Download Ticket <i class="fas fa-download"></i></button>
+    </div>
+</div>
+<main class="max-w-7xl mx-auto p-6 lg:p-10 space-y-12" style="padding-top: 120px;">        
+        <div class="flex flex-col lg:flex-row items-stretch gap-8">
+            <section class="lg:w-1/2 flex flex-col">
+                <div class="mb-6">
+
+                    <h1 class="text-7xl font-black mt-2 mb-4 text-slate-900 font-serif">कस्तुरा</h1>
+                    <div class="flex gap-6 text-black font-medium border-l-4 border-blue-500 pl-4">
+    <p><span class="text-slate-900 font-bold">लेखक:</span>सुशांत घाडगे</p>
+    <p><span class="text-slate-900 font-bold">दिग्दर्शक:</span>स्वप्निल माने</p>
+</div>
+               
+                </div>
+
+                <div class="glass-card p-8 flex-grow">
+                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-book-open text-blue-500"></i>सारांश</h2>
+                    <p class="text-slate-600 leading-relaxed text-lg">
+ज्या गावात “सती” प्रथा बंद आहे, त्या गावाची ही कथा आहे. युद्धात पती वीरमरण पावल्यानंतर एका स्त्रीच्या असहाय परिस्थितीचा काही गावकरी गैरफायदा घेण्याचा प्रयत्न करतात.
+समाजातील दुटप्पीपणा, स्त्रीची असुरक्षितता आणि नैतिकतेवर प्रश्न उपस्थित करणारी ही एक विचार करायला लावणारी कथा आहे.
+                    </p>
+                </div>
+            </section>
+<!--prize image -->
+
+
+<section class="lg:w-1/2 flex">
+    <div class="glass-card w-full relative overflow-hidden group bg-black h-[400px]">
+        
+        <button id="prevBtn" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/60 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button id="nextBtn" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/60 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <div id="media-slider" class="flex h-full w-full transition-transform duration-700 ease-in-out">
+            <div class="min-w-full h-full relative">
+                <img src="kastura1.jpeg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="kastura win1.jpeg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="kastura win2.jpeg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="kastura prize.jpeg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="kastura rushi da.jpeg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div><div class="min-w-full h-full relative">
+                <img src="kastura shruti.jpeg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div><div class="min-w-full h-full relative">
+                <img src="kastura5.jpeg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            
+        </div>
+
+        <p class="absolute bottom-6 left-6 text-white font-bold tracking-widest text-xs uppercase z-10">
+            Highlights
+        </p>
+
+       <div class="absolute bottom-4 right-6 flex gap-2 z-10">
+    <div class="w-2 h-2 rounded-full slide-dot border border-white/50 transition-all"></div>
+    <div class="w-2 h-2 rounded-full slide-dot border border-white/50 transition-all"></div>
+    <div class="w-2 h-2 rounded-full slide-dot border border-white/50 transition-all"></div>
+    <div class="w-2 h-2 rounded-full slide-dot border border-white/50 transition-all"></div>
+    <div class="w-2 h-2 rounded-full slide-dot border border-white/50 transition-all"></div>
+    <div class="w-2 h-2 rounded-full slide-dot border border-white/50 transition-all"></div>
+    <div class="w-2 h-2 rounded-full slide-dot border border-white/50 transition-all"></div>
+    
+</div>
+    </div>
+</section>
+
+
+<!-- end of prize image -->
+        </div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+   <div class="glass-card p-6 text-center border-b-4 border-[#D4AF37] shadow-[0_4px_15px_rgba(212,175,55,0.2)]">
+    <div class="text-xs font-bold text-[#AA8A2E] uppercase tracking-widest mb-1">Major Win</div>
+    <div class="text-xl font-bold text-slate-800">पुरूषोत्तम करंडक</div>
+</div>
+    <div class="glass-card p-6 text-center border-b-4 border-[#D4AF37] shadow-[0_4px_15px_rgba(212,175,55,0.2)]">
+        <div class="text-xs font-bold text-[#AA8A2E] uppercase tracking-widest mb-1">Team Awards</div>
+        <div class="text-3xl font-black text-slate-900">22</div>
+    </div>
+    <div class="glass-card p-6 text-center border-b-4 border-[#D4AF37] shadow-[0_4px_15px_rgba(212,175,55,0.2)]">
+        <div class="text-xs font-bold text-[#AA8A2E] uppercase tracking-widest mb-1">Individual Awards</div>
+        <div class="text-3xl font-black text-slate-900">37</div>
+    </div>
+</div>
+
+<!-- natakache photos and behinde scence -->
+<div class="grid lg:grid-cols-2 gap-8 mt-12">
+    
+    <section class="glass-card p-6 overflow-hidden">
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800">
+            <i class="fas fa-camera-retro text-blue-500"></i> नाटकाची छायाचित्रे
+        </h2>
+        
+        <div class="slider-viewport" onmouseenter="pauseSlide('play')" onmouseleave="resumeSlide('play')">
+            <div class="slider-track" id="track-play">
+                <div class="slide-box"><img src="kastura2.jpeg" alt="Proposal Scene"></div>
+                <div class="slide-box"><img src="kastura3.jpeg" alt="Duo Scene"></div>
+                <div class="slide-box"><img src="kastura4.jpeg" alt="Drunk Scene"></div>
+                <div class="slide-box"><img src="kastura7.jpeg" alt="Drunk Scene"></div>
+                <div class="slide-box"><img src="kastura5.jpeg" alt="Drunk Scene"></div>
+                <div class="slide-box"><img src="kastura 8.jpeg" alt="Drunk Scene"></div>
+
+                 
+            </div>
+            
+            <button class="nav-btn prev" onclick="movePrev('play')"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn next" onclick="moveNext('play')"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        
+    </section>
+
+    <section class="glass-card p-6 overflow-hidden">
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800">
+            <i class="fas fa-mask text-blue-500"></i> पडद्यामागे
+        </h2>
+        
+        <div class="slider-viewport" onmouseenter="pauseSlide('practice')" onmouseleave="resumeSlide('practice')">
+            <div class="slider-track" id="track-practice">
+                <div class="slide-box"><img src="kastura behinde1.jpeg" alt="Behind Scene"></div>
+                <div class="slide-box"><img src="kastura behinde2.jpeg" alt="Practice"></div>
+                <div class="slide-box"><img src="kastura behinde6.jpeg" alt="Hall Practice"></div>
+             <div class="slide-box"><img src="kasuta behinde5.jpeg" alt="Hall Practice"></div>
+                <div class="slide-box"><img src="kastura group.jpeg" alt="Hall Practice"></div>
+
+
+
+                
+            </div>
+            
+            <button class="nav-btn prev" onclick="movePrev('practice')"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn next" onclick="moveNext('practice')"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+</div>
+
+<!-- end of natakache photos -->
+
+
+<div class="grid lg:grid-cols-2 gap-8 mt-12">
+    
+   <section class="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 text-slate-800">
+            <i class="fas fa-users text-blue-600"></i> Cast
+        </h2>
+        
+        <div class="overflow-hidden rounded-xl border border-slate-100">
+            <div class="grid grid-cols-2 bg-slate-50 border-b border-slate-100 p-3 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <div>Role</div>
+                <div>Name</div>
+            </div>
+            <div class="divide-y divide-slate-100 text-sm">
+                <div class="grid grid-cols-2 p-4 hover:bg-slate-50 transition">
+                    <span class="font-bold">लेखक</span>
+                    <span class="text-slate-500">सुशांत घाडगे</span>
+                </div>
+                <div class="grid grid-cols-2 p-4 hover:bg-slate-50 transition">
+                    <span class="font-bold">दिग्दर्शक</span>
+                    <span class="text-slate-500">स्वप्निल माने</span>
+                </div>
+                <div class="grid grid-cols-2 p-4 hover:bg-slate-50 transition">
+                    <span class="font-bold">कलाकार </span>
+                    <span class="text-slate-500">ऋषिकेश जाधव, विनय महाडिक, आशुतोष थोरात, शुभम कर्णे, श्रुती पाटील, स्नेहा पवार, प्रनाली पाटील, प्रनाल आंबेकर, स्वप्निल माने, अनिकेत तांदळे, निखिल पालसे, सायली पाटील, अभयसिंह मोरे</span>
+                </div>
+                <div class="grid grid-cols-2 p-4 hover:bg-slate-50 transition">
+                    <span class="font-bold">नैपथ्य </span>
+                    <span class="text-slate-500">अनिकेत तांदळे, निखिल पालसे, आशुतोष थोरात</span>
+                </div>
+                <div class="grid grid-cols-2 p-4 hover:bg-slate-50 transition">
+                    <span class="font-bold">संगीत </span>
+                    <span class="text-slate-500">शुभम कर्णे</span>
+                </div>
+                <div class="grid grid-cols-2 p-4 hover:bg-slate-50 transition">
+                    <span class="font-bold">प्रकाश योजना</span>
+                    <span class="text-slate-500">पवन लोंढे, सौरभ येडगे, शाहिदा मोमीन</span>
+                </div>
+                <div class="grid grid-cols-2 p-4 hover:bg-slate-50 transition">
+                    <span class="font-bold">वेशभूषा रंगभूषा</span>
+                    <span class="text-slate-500">श्रुती पाटील, स्नेहा पवार</span>
+                </div>
+               
+                
+            </div>
+        </div>
+    </section>
+    <section class="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm flex flex-col">
+    <h2 class="text-2xl font-bold mb-2 text-slate-800 flex items-center gap-3">
+        <i class="fas fa-comment-dots text-blue-600"></i> Audience Response
+    </h2>
+
+    <div id="feedback-list" class="space-y-4 mb-8 pr-2 max-h-[250px] overflow-y-auto" style="scroll-behavior: smooth;">
+        <div class="bg-slate-50 p-4 rounded-2xl text-sm border-l-4 border-blue-500">
+            <div class="text-slate-900 font-bold mb-1">Natyarpan Team</div>
+            <div class="text-slate-600 italic">"Welcome to the show! Leave your thoughts below."</div>
+        </div>
+    </div>
+
+    <div class="mt-auto pt-6 border-t border-slate-100">
+        <input type="text" id="user-name" 
+               class="w-full mb-3 p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-400 transition text-sm font-semibold" 
+               placeholder="Your Name (e.g. Rahul S.)">
+
+        <textarea id="user-input" 
+                  class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-blue-400 transition text-sm" 
+                  rows="3" placeholder="Share your experience..."></textarea>
+        
+        <div class="flex justify-end mt-4">
+            <button onclick="postFeedback()" class="bg-[#001A3D] text-white px-10 py-3 rounded-full font-bold hover:bg-blue-700 transition shadow-md uppercase tracking-widest text-xs">
+                Post
+            </button>
+        </div>
+    </div>
+</section>
+
+</div>
+           
+
+</main>
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer class="natyarpn-footer">
+    <div class="footer-top-grid">
+        <div class="footer-brand">
+            <h2>NATY<span>ARPAN</span></h2>
+            <p>Natyarpan creates a stage where every story finds its voice and lives beyond the curtain.</p>
+        </div>
+
+        <div class="footer-nav">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="index.html#history">History</a></li>
+                <li><a href="index.html#team">Meet Our Team</a></li>
+                <li><a href="index.html#productions">Past Shows</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Connect With Us</h3>
+            <div class="contact-info">
+                <p><i class="fas fa-location-dot"></i> RIT College, Ishwarpur</p>
+                <p><i class="fas fa-envelope"></i> culturalcell@ritindia.edu</p>
+                <p><i class="fas fa-phone"></i> +91 7719062202</p>
+            </div>
+            <div class="social-row">
+                <a href="https://chat.whatsapp.com/D19mvDywoiZ8NLWrmT5FVv?mode=gi_t" class="social-icon wa" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/rit_drama_club?igsh=MWZ6NHRrYTAwd3c0Nw==" class="social-icon insta" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="copyright-text">&copy; 2026 Natyarpn Theater Media. All Rights Reserved.</div>
+        <div class="policy-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Refund Policy</a>
+        </div>
+    </div>
+</footer>
+<script>
+        // Curtain & Page Load
+        // ===== HAMBURGER MENU =====
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            const ham = document.getElementById('hamburger');
+            nav.classList.toggle('open');
+            ham.classList.toggle('open');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('#main-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('main-nav').classList.remove('open');
+                    document.getElementById('hamburger').classList.remove('open');
+                });
+            });
+        });
+
+        window.addEventListener('load', () => {
+            document.body.classList.remove('opacity-0');
+            setTimeout(() => { document.body.classList.add('loaded'); }, 500);
+        });
+        // header 
+        
+    const modal = document.getElementById('scratch-modal');
+    const openBtn = document.getElementById('open-scratch');
+    const closeBtn = document.querySelector('.close-modal');
+    const canvas = document.getElementById('scratch-canvas');
+    const ctx = canvas.getContext('2d');
+    const downloadBtn = document.getElementById('download-btn');
+    const ticketImg = document.getElementById('ticket-img');
+
+    let isDrawing = false;
+
+    // 1. Open Modal and Initialize Canvas
+    openBtn.onclick = () => {
+        modal.style.display = 'flex';
+        initCanvas();
+    };
+
+    closeBtn.onclick = () => {
+        modal.style.display = 'none';
+        // Optional: Reset canvas if they close it?
+    };
+
+    function initCanvas() {
+        const container = document.querySelector('.scratch-container');
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+
+        // Fill with "scratchable" silver color
+        ctx.fillStyle = '#C0C0C0'; 
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Add some "scratch here" text
+        ctx.fillStyle = '#777';
+        ctx.font = '20px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('SCRATCH HERE', canvas.width/2, canvas.height/2 + 7);
+
+        // Set the operation to "erase" instead of "draw"
+        ctx.globalCompositeOperation = 'destination-out';
+    }
+
+    // 2. Scratching Logic
+    function scratch(e) {
+        if (!isDrawing) return;
+        
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - rect.left;
+        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI * 2); // 20 is the brush size
+        ctx.fill();
+        
+        checkScratchPercentage();
+    }
+
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('touchstart', (e) => { isDrawing = true; e.preventDefault(); });
+    
+    window.addEventListener('mousemove', scratch);
+    window.addEventListener('touchmove', (e) => { scratch(e); e.preventDefault(); });
+    
+    window.addEventListener('mouseup', () => isDrawing = false);
+    window.addEventListener('touchend', () => isDrawing = false);
+
+    // 3. Reveal Download Button
+    function checkScratchPercentage() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imageData.data;
+        let clearPixels = 0;
+
+        for (let i = 3; i < pixels.length; i += 4) {
+            if (pixels[i] === 0) clearPixels++; // Pixel is transparent
+        }
+
+        const percentage = (clearPixels / (pixels.length / 4)) * 100;
+        
+        // If 50% of the card is scratched, show the download button
+        if (percentage > 50) {
+            downloadBtn.style.display = 'inline-block';
+            // Optional: completely clear the canvas for a clean look
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+
+    // 4. Download Functionality
+    downloadBtn.onclick = () => {
+        const link = document.createElement('a');
+        link.href = ticketImg.src; // Uses the image source
+        link.download = 'Natyarpan_Ticket.jpg';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+    // nataache photos
+// Configuration for both sliders
+   
+    const sliders = {
+        play: { index: 0, total: 0, timer: null, el: null },
+        practice: { index: 0, total: 0, timer: null, el: null }
+    };
+
+    function initSlider(id) {
+        const track = document.getElementById(`track-${id}`);
+        const slides = track.querySelectorAll('.slide-box');
+        
+        if (slides.length === 0) return;
+
+        // 1. Automatically clone the first slide and add it to the end
+        const firstClone = slides[0].cloneNode(true);
+        track.appendChild(firstClone);
+        
+        // 2. Set up the state
+        sliders[id].total = slides.length + 1; // Original images + 1 clone
+        sliders[id].el = track;
+        
+        startAuto(id);
+    }
+
+    function moveNext(id) {
+        const s = sliders[id];
+        if (!s.el) return;
+
+        s.index++;
+        
+        // Slide forward naturally
+        s.el.style.transition = "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)";
+        s.el.style.transform = `translateX(-${s.index * 100}%)`;
+
+        // If we land on the "clone" (which looks like the first photo)
+        if (s.index === s.total - 1) {
+            setTimeout(() => {
+                // INSTANT RESET: Turn off animation and jump to the real first photo
+                s.el.style.transition = "none";
+                s.index = 0;
+                s.el.style.transform = `translateX(0%)`;
+            }, 700); // 700ms matches the transition time above
+        }
+    }
+
+    function movePrev(id) {
+        const s = sliders[id];
+        if (!s.el) return;
+
+        if (s.index === 0) {
+            // If at the start, instantly jump to the clone at the end...
+            s.el.style.transition = "none";
+            s.index = s.total - 1;
+            s.el.style.transform = `translateX(-${s.index * 100}%)`;
+            
+            // ...then slide backward to the actual last photo
+            setTimeout(() => {
+                s.el.style.transition = "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)";
+                s.index--;
+                s.el.style.transform = `translateX(-${s.index * 100}%)`;
+            }, 20); 
+        } else {
+            s.index--;
+            s.el.style.transform = `translateX(-${s.index * 100}%)`;
+        }
+    }
+
+    function startAuto(id) {
+        // Change 3000 to 5000 if 3 seconds is too fast for 10+ images
+        sliders[id].timer = setInterval(() => moveNext(id), 3000);
+    }
+
+    function pauseSlide(id) { clearInterval(sliders[id].timer); }
+    function resumeSlide(id) { startAuto(id); }
+
+    // Initialize both sliders when the page finishes loading
+    window.addEventListener('DOMContentLoaded', () => {
+        initSlider('play');
+        initSlider('practice');
+    });
+
+    
+// end of natakache photo
+
+    // scroll function in audiemce responce
+
+
+function postFeedback() {
+    // Select both input fields and the list
+    const nameInput = document.getElementById('user-name');
+    const commentInput = document.getElementById('user-input');
+    const list = document.getElementById('feedback-list');
+
+    const name = nameInput.value.trim();
+    const message = commentInput.value.trim();
+
+    // Check if both fields are filled
+    if (name !== "" && message !== "") {
+        const newComment = document.createElement('div');
+        newComment.className = "bg-slate-50 p-4 rounded-2xl text-sm border-l-4 border-blue-500 animate-fade-in mb-4";
+        
+        // This creates the structure: Name on top, Comment below
+        newComment.innerHTML = `
+            <div class="text-slate-900 font-bold mb-1">${name}</div>
+            <div class="text-slate-600 italic">"${message}"</div>
+        `;
+
+        // Add to the list
+        list.appendChild(newComment);
+
+        // Auto-scroll to show the latest post
+        list.scrollTo({ top: list.scrollHeight, behavior: 'smooth' });
+
+        // Clear both inputs after posting
+        nameInput.value = "";
+        commentInput.value = "";
+    } else {
+        alert("Please enter both your name and a comment!");
+    }
+}    
+   
+
+// hightlight secction 
+const slider = document.getElementById('media-slider');
+const dots = document.querySelectorAll('.slide-dot');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+// 1. Clone the first slide and append it to the end
+const firstClone = slider.children[0].cloneNode(true);
+slider.appendChild(firstClone);
+
+let currentIndex = 0;
+const totalOriginalSlides = slider.children.length - 1; 
+let slideInterval;
+
+function updateSlider(isInstant = false) {
+    if (isInstant) {
+        slider.style.transition = "none"; // Disable animation for the "jump"
+    } else {
+        slider.style.transition = "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)";
+    }
+    
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    // Sync dots (we use % to make sure the clone highlights the first dot)
+    const dotIndex = currentIndex % totalOriginalSlides;
+    dots.forEach((dot, index) => {
+        dot.style.width = index === dotIndex ? '24px' : '8px';
+        dot.style.backgroundColor = index === dotIndex ? 'white' : 'rgba(255, 255, 255, 0.3)';
+    });
+}
+
+function nextSlide() {
+    currentIndex++;
+    updateSlider();
+
+    // The Trick: If we are on the clone, wait for animation to finish, then jump to start
+    if (currentIndex === totalOriginalSlides) {
+        setTimeout(() => {
+            currentIndex = 0;
+            updateSlider(true); // Instant jump to the real first slide
+        }, 700); // Match this to your transition time (0.7s)
+    }
+}
+
+function prevSlide() {
+    if (currentIndex === 0) {
+        currentIndex = totalOriginalSlides - 1;
+        updateSlider(true); // Instant jump to end
+    } else {
+        currentIndex--;
+        updateSlider();
+    }
+}
+
+// Controls
+function startAutoSlide() {
+    stopAutoSlide();
+    slideInterval = setInterval(nextSlide, 3000);
+}
+
+function stopAutoSlide() {
+    if (slideInterval) clearInterval(slideInterval);
+}
+
+nextBtn.addEventListener('click', () => { nextSlide(); startAutoSlide(); });
+prevBtn.addEventListener('click', () => { prevSlide(); startAutoSlide(); });
+
+// Dot Navigation
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateSlider();
+        startAutoSlide();
+    });
+});
+
+// Pause on hover
+const highlightCard = slider.closest('.glass-card');
+if (highlightCard) {
+    highlightCard.addEventListener('mouseenter', stopAutoSlide);
+    highlightCard.addEventListener('mouseleave', startAutoSlide);
+}
+
+// Start
+updateSlider();
+startAutoSlide();  
+
+
+// backend
+
+const API_URL = 'https://natyarpan-backend.onrender.com/api/comments';
+
+async function postFeedback() {
+    const nameInput = document.getElementById('user-name');
+    const messageInput = document.getElementById('user-input');
+
+    if (!nameInput.value || !messageInput.value) {
+        alert("Please enter both your name and a message.");
+        return;
+    }
+
+    const newComment = {
+        name: nameInput.value,
+        message: messageInput.value,
+        play: 'KASTURA'
+    };
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newComment)
+        });
+        if (response.ok) {
+            nameInput.value = '';
+            messageInput.value = '';
+            loadFeedback();
+        }
+    } catch (error) {
+        alert("Server is not responding. Make sure your backend is running!");
+    }
+}
+
+async function loadFeedback() {
+    const feedbackList = document.getElementById('feedback-list');
+    try {
+        const res = await fetch(API_URL + '?play=KASTURA');
+        const comments = await res.json();
+        const welcomeMessage = `
+            <div class="bg-slate-50 p-4 rounded-2xl text-sm border-l-4 border-blue-500">
+                <div class="text-slate-900 font-bold mb-1">Natyarpan Team</div>
+                <div class="text-slate-600 italic">"Welcome to the show! Leave your thoughts below."</div>
+            </div>`;
+        feedbackList.innerHTML = welcomeMessage + comments.map(c => `
+            <div class="bg-slate-50 p-4 rounded-2xl text-sm border-l-4 border-slate-300">
+                <div class="text-slate-900 font-bold mb-1">${c.name}</div>
+                <div class="text-slate-600">"${c.message}"</div>
+                <div class="text-[10px] text-slate-400 mt-2 uppercase">${new Date(c.createdAt).toLocaleDateString()}</div>
+            </div>
+        `).join('');
+        feedbackList.scrollTop = feedbackList.scrollHeight;
+    } catch (error) {
+        console.error("Error loading feedback:", error);
+    }
+}
+
+window.onload = loadFeedback;
+    </script>
+</body>
+</html>

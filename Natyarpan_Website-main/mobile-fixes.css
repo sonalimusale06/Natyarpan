@@ -1,0 +1,169 @@
+/* ================================================
+   MOBILE RESPONSIVE FIXES
+================================================ */
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* ── 768px and below ── */
+@media (max-width: 768px) {
+
+    header {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        padding: 0 4%;
+        gap: 8px;
+        overflow: hidden;
+    }
+    .header-left { flex: 1; gap: 8px; min-width: 0; }
+    .brand-name { font-size: 1rem; letter-spacing: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand-logo { height: 34px; }
+    .header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .header-end-logo { height: 34px; }
+    .ticket-btn { padding: 7px 12px; font-size: 0.7rem; gap: 5px; white-space: nowrap; }
+    .hamburger { display: flex; }
+
+    .nav-bar {
+        display: flex !important;
+        flex-direction: column;
+        position: fixed;
+        top: 0; right: -100%;
+        width: 70%; max-width: 280px;
+        height: 100vh;
+        background: #001535;
+        padding: 90px 30px 40px;
+        gap: 28px; z-index: 2050;
+        transition: right 0.35s ease;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+    }
+    .nav-bar.open { right: 0; }
+    .nav-bar a { font-size: 1rem; letter-spacing: 2px; }
+
+    .hero-content h1 { font-size: clamp(2.2rem, 10vw, 4rem); }
+    .hero-content p  { font-size: 0.85rem; letter-spacing: 2px; }
+
+    #productions { padding: 70px 5%; }
+    .section-title { font-size: 2rem; }
+    .show-grid { grid-template-columns: 1fr; gap: 20px; }
+    .show-card { padding: 25px; }
+    .show-card h3 { font-size: 1.4rem; }
+
+    .stats-ribbon { padding: 20px 0; }
+    .stat-item { padding: 0 22px; }
+    .stat-number { font-size: 2.2rem; }
+    .stat-label  { font-size: 0.75rem; letter-spacing: 1.5px; }
+
+    .archive-container { padding: 60px 4%; }
+    .legacy-title { font-size: 1.8rem; letter-spacing: 2px; }
+    .card-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+
+    /* TEAM CARD */
+    :root { --card-width: 260px; --card-height: 420px; }
+    .card-stack { height: 480px; }
+    .team-title  { font-size: 1.8rem; }
+    .team-card.prev { transform: translateX(-160px) scale(0.72) rotateY(18deg); }
+    .team-card.next { transform: translateX(160px)  scale(0.72) rotateY(-18deg); }
+
+    /* CARD BACK - fit all content without scroll */
+    .card-back {
+        padding: 15px 14px !important;
+        overflow: hidden !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+    }
+    .member-header { margin-bottom: 8px !important; text-align: center !important; width: 100% !important; }
+    .name-back { font-size: 1rem !important; line-height: 1.2 !important; }
+    .role-back { font-size: 0.55rem !important; margin-top: 2px !important; letter-spacing: 1.5px !important; }
+    .credit-timeline { padding-left: 15px !important; }
+    .entry { margin-bottom: 8px !important; }
+    .p-name { font-size: 0.78rem !important; margin-bottom: 1px !important; }
+    .p-role { font-size: 0.58rem !important; line-height: 1.3 !important; }
+    .entry::before { width: 7px !important; height: 7px !important; left: -19px !important; top: 6px !important; }
+
+    .modal-content   { width: 92vw; padding: 18px 14px; margin: 10px; max-width: 92vw; }
+    .scratch-container { width: 100%; height: 200px; }
+
+    .footer-top-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+    .footer-nav { align-items: center; }
+    .footer-nav h3::after { left: 50%; transform: translateX(-50%); }
+    .social-row  { justify-content: center; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .policy-links a { margin-left: 10px; }
+}
+
+/* ── 480px and below ── */
+@media (max-width: 480px) {
+    header { height: 56px; padding: 0 3%; }
+    .header-left { gap: 6px; }
+    .brand-logo  { height: 30px; }
+    .brand-name  { font-size: 0.85rem; }
+    .header-end-logo { display: none; }
+    .ticket-btn i ~ * { display: none; }
+    .ticket-btn { padding: 7px 10px; font-size: 0.7rem; }
+
+    .hero-content p  { font-size: 0.75rem; letter-spacing: 1.5px; }
+    .explore-text    { font-size: 0.8rem; letter-spacing: 3px; }
+
+    .show-card h3 { font-size: 1.2rem; }
+    .show-card p  { font-size: 0.82rem; }
+
+    .stat-item   { padding: 0 14px; }
+    .stat-number { font-size: 1.8rem; }
+    .stat-label  { font-size: 0.65rem; letter-spacing: 1px; }
+    .stat-divider { height: 35px; }
+
+    .card-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .play-info h2 { font-size: 0.9rem; }
+    .play-info p  { font-size: 0.68rem; }
+    .legacy-title { font-size: 1.4rem; }
+
+    /* TEAM CARD */
+    :root { --card-width: 220px; --card-height: 380px; }
+    .card-stack  { height: 440px; }
+    .team-card.prev { transform: translateX(-110px) scale(0.62) rotateY(15deg); }
+    .team-card.next { transform: translateX(110px)  scale(0.62) rotateY(-15deg); }
+
+    /* CARD BACK */
+    .card-back {
+        padding: 12px 10px !important;
+        overflow: hidden !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+    }
+    .member-header { margin-bottom: 6px !important; }
+    .name-back { font-size: 0.95rem !important; }
+    .role-back { font-size: 0.5rem !important; }
+    .entry { margin-bottom: 6px !important; }
+    .p-name { font-size: 0.72rem !important; }
+    .p-role { font-size: 0.54rem !important; line-height: 1.2 !important; }
+
+    .footer-brand h2   { font-size: 1.6rem; }
+    .natyarpn-footer   { padding: 25px 5% 15px; }
+    .copyright-text    { font-size: 0.78rem; }
+    .policy-links a    { font-size: 0.78rem; }
+}
+
+/* ── 360px and below ── */
+@media (max-width: 360px) {
+    .brand-name { font-size: 0.75rem; }
+    .stat-item  { padding: 0 10px; }
+    .card-grid  { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+    :root { --card-width: 185px; --card-height: 360px; }
+    .card-stack { height: 420px; }
+    .team-card.prev { transform: translateX(-90px)  scale(0.58) rotateY(12deg); }
+    .team-card.next { transform: translateX(90px)   scale(0.58) rotateY(-12deg); }
+
+    .card-back {
+        padding: 10px 8px !important;
+        overflow: hidden !important;
+    }
+    .name-back { font-size: 0.88rem !important; }
+    .entry { margin-bottom: 5px !important; }
+    .p-name { font-size: 0.68rem !important; }
+    .p-role { font-size: 0.5rem !important; }
+}
